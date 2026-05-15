@@ -258,8 +258,8 @@ mgr.cache_clear()
 
 
 ### 2) Application Mode  - Dynamic Flags  
-As per 1)  but there may also be an Infisical project containing a folder of feature-like flags that represent dynamic switches in the program. e.g enable/disable flags controlling behaviour in the app.   
-If these switches will also be changed in the app by the user and their state required to be persisted in Infisical, the client allows for this.
+As per 1)  but using feature-like flags that represent dynamic switches in the program controlling behaviours. e.g enable/disable flags.   
+If their states are to be dynamically changed by a user, they need to be persisted in Infisical - the client allows for this.
 
 ``` python
 from infisical_conf import InfisicalManager, INFO
