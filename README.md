@@ -1,10 +1,10 @@
 # Infisical Python Config Manager (`infisical-conf`)
-
-A client wrapper providing a local configuration cache from an Infisical Instance with python methods for **pulling, caching, editing, retrieving, validating and pushing** secrets to and from the instance using a clean workflow.  
-It's main job is creating configuration objects into python scripts.  
-Bringing id's, tokens, keys, url's from Infisicals organised, secure & documented store.  
+  
+A local configuration cache for Infisical Secrets.  
+Python methods for **pulling, caching, editing, retrieving, validating and pushing** using a clean workflow.   
+It's main job is creating configuration objects in python scripts.  
+Bringing Secrets from Infisicals UI.  
 Working on a `projects.folder.secret (environment)` hierarchy.  
-Infisical Web UI is used to maintain and organise secrets
 
 This project wraps the official `infisical_sdk` with:
 
@@ -27,14 +27,14 @@ Designed for reproducible, scriptable, configuration workflows.
 - Easy to use and remember methods.  
 
 ## Security Considerations
-- Built for use in a homelab development environment - it does not purport to be enterprise grade - so don't use it unless you fully understand it's security considerations.  
-- Authenticated using a Machine Identity (Client ID + Client Secret) - setup in Infisical.   
-- Does not have unrestricted access to the Infisical workspace - its access to content is strictly defined in the authenticated identity.  
-- Whatever the client can access using its MI is exactly the same set of secrets, folders, and environments visible to a human operator in the Infisical UI with same credentials. 
+- Built for use in development environments - not claiming to be enterprise grade - don't use it unless you fully understand it's function and purpose.    
+- Authenticated using a Machine Identity (Client ID + Client Secret).   
+- No unrestricted access to the Infisical workspace - access to content strictly defined in the authenticated identity.  
+- Whatever the client can access is exactly the same set of secrets, folders, and environments visible to a human user in the Infisical UI with same credentials. 
 - No hidden elevation, no additional scope, and no bypass of Infisical’s RBAC model.  
 - The local cache is in-memory - never written to disk or otherwise persisted - exists only for the lifetime of the process.  
-- Logging can be redacted using keywords in instantiation so no values are ever recorded in logs.
-- Push Updates against the Infisical instance can be disabled on instantiation.  
+- Logging can be redacted using keywords at startup so no values ever recorded in logs.
+- Pushes to the Infisical instance can be disabled at startup.  
 
 ## Concepts
 
