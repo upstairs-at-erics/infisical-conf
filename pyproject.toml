@@ -1,7 +1,7 @@
 [project]
 name = "infisical-conf"
-version = "1.0.0"
-description = "A caching configuration service that works with Infisical Secrets Management to provide flexible and fast access to secrets and flags."
+version = "0.1.0"
+description = "Python configuration manager with local cache, wildcard operations, dirty-tracking backed by Infisical Secrets Management."
 authors = [{ name = "Mark Traverse" }]
 readme = "README-pypi.md"
 license = { file = "LICENSE" }
@@ -9,7 +9,8 @@ requires-python = ">=3.9"
 
 dependencies = [
     "infisicalsdk>=1.0.15",
-    "requests>=2.31"
+    "requests>=2.31",
+    "rich>=13.0.0"
 ]
 
 [project.urls]
@@ -17,8 +18,6 @@ Homepage = "https://github.com/upstairs-at-erics/infisical-conf"
 Repository = "https://github.com/upstairs-at-erics/infisical-conf"
 Issues = "https://github.com/upstairs-at-erics/infisical-conf/issues"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
