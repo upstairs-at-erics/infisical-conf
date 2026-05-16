@@ -2,7 +2,7 @@
   
 A local configuration cache for Infisical Secrets.  
 Python methods for **pulling, caching, editing, retrieving, validating and pushing** using a clean workflow.    
-Fetch Secrets from Infisical Secrets Manager
+Fetch Secrets from Infisical Secrets Manager  
 Create configuration objects in python scripts. 
 Working on a `projects.folder.secret (environment)` hierarchy.  
 
