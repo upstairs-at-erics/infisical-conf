@@ -1,9 +1,9 @@
-# Infisical Python Config Manager (`infisical-conf`)
+# infisical-conf
   
 A local configuration cache for Infisical Secrets.  
-Python methods for **pulling, caching, editing, retrieving, validating and pushing** using a clean workflow.   
-It's main job is creating configuration objects in python scripts.  
-Bringing Secrets from Infisicals UI.  
+Python methods for **pulling, caching, editing, retrieving, validating and pushing** using a clean workflow.    
+Fetch Secrets from Infisical Secrets Manager
+Create configuration objects in python scripts. 
 Working on a `projects.folder.secret (environment)` hierarchy.  
 
 This project wraps the official `infisical_sdk` with:
@@ -21,16 +21,17 @@ This project wraps the official `infisical_sdk` with:
 Designed for reproducible, scriptable, configuration workflows.
 
 ## Motivation
-- Single source of truth for Python Secrets in a Homelab environment.
-- Keeping Dry when handling Secrets - Simplifying access to Secrets and avoiding bloat code in scripts
-- pip installable package 
-- Easy to use and remember methods.  
+- Single source of truth for Python Secrets in a Homelab environment.  
+- Simplify access to Secrets and avoiding code bloat in scripts.  
+- Consistent approach to managing Secrets in code.  
+- pip installable package   
+- Easy to use and remember methods.   
 
 ## Security Considerations
-- Built for use in development environments - not claiming to be enterprise grade - don't use it unless you fully understand it's function and purpose.    
+- Built for use in development environments - not claiming to be enterprise grade - don't use unless it's function and purpose is understood.    
 - Authenticated using a Machine Identity (Client ID + Client Secret).   
 - No unrestricted access to the Infisical workspace - access to content strictly defined in the authenticated identity.  
-- Whatever the client can access is exactly the same set of secrets, folders, and environments visible to a human user in the Infisical UI with same credentials. 
+- Whatever the client can access is exactly the same set of secrets, folders, and environments accesible to a user in the UI using same credentials. 
 - No hidden elevation, no additional scope, and no bypass of Infisical’s RBAC model.  
 - The local cache is in-memory - never written to disk or otherwise persisted - exists only for the lifetime of the process.  
 - Logging can be redacted using keywords at startup so no values ever recorded in logs.
@@ -39,8 +40,7 @@ Designed for reproducible, scriptable, configuration workflows.
 ## Concepts
 
 ### Cache Lifecycle (Summary)
-The InfisicalManager keeps an in‑memory cache of secrets.  
-All operations work against this cache, making the workflow predictable and safe.  
+Builds an in‑memory cache of secrets.  All ops work against this cache, making the workflow predictable and safe.    
 
 ```mermaid
 flowchart TD
@@ -140,20 +140,21 @@ manager = InfisicalManager(log_level=DEBUG, redact=False, visuals=True, readonly
 ```
 
 **Keywords**  
+log_level = DEBUG / INFO / WARNING / ERROR  / CRITICAL  
 
 redact  = True/False  
-If True, ensures no values are recorded in logs 
+If True, ensures no values are recorded in logs  
 
-visuals = True/False  
-If True, the console log will show helpful visual clues about the status of cache including the Cache Tree, Dirty Tree and Project Table.
+visuals = True/False   
+If True, the console log will show helpful visual clues about the status of cache including the Cache Tree, Dirty Tree and Project Table.  
 
-readonly = True/False  
-If True prevents any updates on Infisical (inhibits push features) - assuming these are allowed anyway by the Machine Identity credentials  
+readonly = True/False   
+If True prevents any updates on Infisical (inhibits push features) - assuming these are allowed anyway by the Machine Identity credentials   
 
 
 
 ### Usage  
-Here is an example of the methods that can be used - assumes the Infisicalmanager has been instantiated.  
+Somme of the main methods that can be used - assumes the Infisicalmanager has been instantiated.  
 
 ``` python
 
@@ -182,7 +183,7 @@ manager.push_all()                         # Push Anything that has changed in t
 ```
 
 ### Cache Operations  
-Here is an example of the methods that can be used to manipulate the cache - assumes Infisicalmanager has been instantiated.  
+Methods to manipulate the cache - assumes Infisicalmanager has been instantiated.  
 
 ``` python
 # Clear / Drop the whole cache 
@@ -258,8 +259,8 @@ mgr.cache_clear()
 
 
 ### 2) Application Mode  - Dynamic Flags  
-As per 1)  but using feature-like flags that represent dynamic switches in the program controlling behaviours. e.g enable/disable flags.   
-If their states are to be dynamically changed by a user, they need to be persisted in Infisical - the client allows for this.
+As per 1) but using feature-like flags that represent dynamic switches in the program, controlling behaviours. e.g enable/disable flags.   
+When dynamically changed by a user, they can be persisted in Infisical.  
 
 ``` python
 from infisical_conf import InfisicalManager, INFO
@@ -389,8 +390,6 @@ Visual output is powered by the excellent [Rich library](https://github.com/Text
 If you find this project useful and want to support ongoing development — or if you’d like me to prioritise specific enhancements — please drop me a line:
 
 [![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=marktraverse&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/marktraverse)
-
-
 
 
 
