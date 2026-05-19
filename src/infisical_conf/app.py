@@ -202,6 +202,40 @@ class InfisicalManager(
 
 if __name__ == "__main__":
 
+    manager = InfisicalManager(log_level=DEBUG, redact = False, visuals = True, readonly=False )  # redact is default
+    manager.set_visuals(True)
+    manager.set_env('prod')
+     
+    # Pull in the project to cache - this includes the folder 'features' which contains our feature flags
+    manager.pull("shakedown-sumup-email-orders.*.*" )
+     
+    route = "shakedown-sumup-email-orders.features.NEW_ORDER_HA_NOTIFY_TV"
+    
+    # GET -----------
+    value = manager.get(route)
+    rprint(f"Current value of {route}: {value} (type: {type(value)})")
+
+    # Normalise to Python bool using your helper
+    current_bool = manager._booler(value)
+
+    # Toggle
+    new_bool = not current_bool
+
+    # Convert back to Infisical string
+    new_value = "True" if new_bool else "False"
+
+    # SET -----------
+    manager.set_secret(route, new_value) 
+
+
+    
+    # PUSH ------------
+    #manager.push(route)
+    manager.push_all()
+
+    # 
+    # 
+    exit()
     
     
     #####################################

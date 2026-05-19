@@ -91,8 +91,18 @@ class PushOpsMixin:
 
         start = time.perf_counter()
 
+        # THIS IS WRONG. It assumes that Infisical is the master and over-writes our local cache with the remote state rather than pushing the dirty state to Infisical. 
+        # #################################################################################################################################################################
+        # We need to push the dirty state to Infisical and only then pull the remote state to refresh the cache. 
+        # Otherwise we lose the dirty state on pull and end up with a cache that is out of sync with our local changes. 
+        # We should only pull after pushing all the dirty secrets to ensure that our local cache is updated with the latest remote state after our changes have been applied. 
+        # Refactor for Release 0.1.1 - which means updating pypi package and pip uninstalling/reinstalling in the project
+        # 
         # Refresh Infisical state
-        self.pull(f"{self.project}.*.*", silent=True)
+        #self.pull(f"{self.project}.*.*", silent=True)
+        #
+        #
+        ###################################################################################################################################################################
 
         # Create missing folders ---
         new_folders = sorted({
