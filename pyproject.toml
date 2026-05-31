@@ -1,11 +1,15 @@
 [project]
 name = "infisical-conf"
-version = "0.1.0"
+version = "0.1.2"
 description = "Python configuration manager with local cache, wildcard operations, dirty-tracking backed by Infisical Secrets Management."
 authors = [{ name = "Mark Traverse" }]
-readme = "README-pypi.md"
-license = { file = "LICENSE" }
+#readme = "README-pypi.md"
+readme = { file = "README-pypi.md", content-type = "text/markdown" }
 requires-python = ">=3.9"
+
+# THE NEW NATIVE 2026/2027 SPECIFICATION:
+license = "MIT"
+license-files = ["LICENSE"] 
 
 dependencies = [
     "infisicalsdk>=1.0.15",

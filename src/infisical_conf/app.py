@@ -213,25 +213,27 @@ if __name__ == "__main__":
     
     # GET -----------
     value = manager.get(route)
-    rprint(f"Current value of {route}: {value} (type: {type(value)})")
-
-    # Normalise to Python bool using your helper
-    current_bool = manager._booler(value)
+    
 
     # Toggle
-    new_bool = not current_bool
+    new_bool = not value
+
+    rprint(f"Changed value of {route}: from {value} (type: {type(value)}) to {new_bool} (type: {type(new_bool)})")
 
     # Convert back to Infisical string
-    new_value = "True" if new_bool else "False"
+    new_string = "True" if new_bool else "False"
 
     # SET -----------
-    manager.set_secret(route, new_value) 
+    manager.set_secret(route, new_string) 
 
 
-    
     # PUSH ------------
-    #manager.push(route)
-    manager.push_all()
+    #if only the specific flag
+    #manager.push(route)   
+       
+    # everything in the dirty tree (in this case just the one flag)
+    #this is better for batch updates and ensures that the cache is refreshed after the push with the latest remote state.
+    manager.push_all()  
 
     # 
     # 
